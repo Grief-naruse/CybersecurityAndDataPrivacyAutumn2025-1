@@ -1,7 +1,7 @@
 # 1️⃣ Introduction
 
 **Tester(s):**  
-- Name:  
+- Name:  GAUTIER-GRALL Maxence / RUBAUD Ilan
 
 **Purpose:**  
 - Describe the purpose of this test (e.g., identify vulnerabilities in registration and authentication flows).
