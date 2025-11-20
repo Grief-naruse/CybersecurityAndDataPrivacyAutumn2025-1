@@ -68,7 +68,8 @@
 
 | ID | Severity | Finding | Description | Evidence / Proof |
 |------|-----------|----------|--------------|------------------|
-| F-01 | 🔴 High | SQL Injection in registration | Username field allows boolean-based SQL injection | Screenshot or sqlmap result |
+| F-01 | 🔴 High | SQL Injection in registration | Username field allows boolean-based SQL injection | '<img width="520" height="279" alt="image" src="https://github.com/user-attachments/assets/02a0ecce-9eb2-4f13-a182-f8338e359770" />
+ |
 | F-02 | 🔴 High | Path Traversal | User can access files outside web root via ../ | Screenshot or sqlmap result |
 | F-03 | 🟠 Medium | Absence of Anti-CSRF Tokens | Registration form has no CSRF protection | Burp log or response headers |
 | F-04 | 🟠 Medium | Content Security Policy Missing | CSP header not set on / and /register | Burp log or response headers |
