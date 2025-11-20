@@ -68,9 +68,11 @@
 
 | ID | Severity | Finding | Description | Evidence / Proof |
 |------|-----------|----------|--------------|------------------|
-| F-01 | 🔴 High | SQL Injection in registration | Input field allows `' OR '1'='1` injection | Screenshot or sqlmap result |
-| F-02 | 🟠 Medium | Session fixation | Session ID remains unchanged after login | Burp log or response headers |
-| F-03 | 🟡 Low | Weak password policy | Accepts passwords like "12345" | Screenshot of registration success |
+| F-01 | 🔴 High | SQL Injection in registration | Username field allows boolean-based SQL injection | Screenshot or sqlmap result |
+| F-02 | 🔴 High | Path Traversal | User can access files outside web root via ../ | Screenshot or sqlmap result |
+| F-03 | 🟠 Medium | Absence of Anti-CSRF Tokens | Registration form has no CSRF protection | Burp log or response headers |
+| F-04 | 🟠 Medium | Content Security Policy Missing | CSP header not set on / and /register | Burp log or response headers |
+| F-05 | 🟡 Low | Weak password policy | Accepts passwords like "12345" | Screenshot of registration success |
 
 ---
 
