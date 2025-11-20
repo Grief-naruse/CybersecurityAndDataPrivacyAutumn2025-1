@@ -4,35 +4,49 @@
 - Name:  GAUTIER-GRALL Maxence / RUBAUD Ilan
 
 **Purpose:**  
-- Describe the purpose of this test (e.g., identify vulnerabilities in registration and authentication flows).
+- Identify the vulnerabilities affecting the user registration flow and the general security configuration of the application.
+- Assess the backend’s resistance to common attack vectors (SQL Injection, Path Traversal, CSRF, missing security headers, etc.).
 
 **Scope:**  
-- Tested components:  
-- Exclusions:  
-- Test approach: Gray-box / Black-box / White-box
+- Tested components:
+    - Home page (/)
+    - Registration page (/register)
+    - Static resources (/static/*.js, /static/*.css)
+- Exclusions:
+    - Login/authentication endpoint (not tested)
+- Test approach:
+    - Gray-box 
 
 **Test environment & dates:**  
-- Start:  
-- End:  
-- Test environment details (OS, runtime, DB, browsers):
+- Start:  20/11/2025
+- End:  20/11/2025
+- Test environment details
+    - OS : Windows 11
+    - runtime : Docker Desktop
+    - DB : PostgreSQL
+    - browsers: Edge + ZAP
 
 **Assumptions & constraints:**  
-- e.g., credentials provided, limited time, etc.
+    - Testing performed on a local development instance.
+    - No authentication required; only the registration form was tested.
+    - Full admin access to the local machine.
 
 ---
 
 # 2️⃣ Executive Summary
 
 **Short summary (1-2 sentences):**  
+    - The ZAP scan found several serious security flaws, such as SQL Injection and Path Traversal, which make the application very vulnerable to attacks. On top of that, important security headers are missing, leaving the system even more exposed.
 
-**Overall risk level:** (Low / Medium / High / Critical)
+**Overall risk level:** 
+   - High
 
 **Top 5 immediate actions:**  
-1.  
-2.  
-3.  
-4.  
-5.  
+1.  Fix SQL Injection vulnerabilities
+2.  Prevent Path Traversal
+3.  Add CSRF protection
+4.  Configure essential security headers
+5.  Implement custom error
 
 ---
 
