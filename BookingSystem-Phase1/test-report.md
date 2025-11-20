@@ -71,7 +71,7 @@
 | F-01 | 🔴 High | SQL Injection in registration | Username field allows boolean-based SQL injection | <img width="520" height="279" alt="image" src="https://github.com/user-attachments/assets/02a0ecce-9eb2-4f13-a182-f8338e359770" />|
 | F-02 | 🔴 High | Path Traversal | User can access files outside web root via ../ | <img width="1372" height="322" alt="image" src="https://github.com/user-attachments/assets/f202031d-978f-40f2-ab27-84766d18d166" />|
 | F-03 | 🟠 Medium | Absence of Anti-CSRF Tokens | Registration form has no CSRF protection | <form action="/register" method="POST"> |
-| F-04 | 🟠 Medium | Content Security Policy Missing | CSP header not set on / and /register | (''missing) <img width="550" height="235" alt="image" src="https://github.com/user-attachments/assets/ed82f394-18f2-472e-8c6c-7c9c6cb09aab" />|
+| F-04 | 🟠 Medium | Content Security Policy Missing | CSP header not set on / and /register | ('missing) <img width="550" height="235" alt="image" src="https://github.com/user-attachments/assets/ed82f394-18f2-472e-8c6c-7c9c6cb09aab" />|
 | F-05 | 🟡 Low | Weak password policy | Accepts passwords like "12345" | <img width="552" height="92" alt="image" src="https://github.com/user-attachments/assets/d8056159-c5b8-45cc-92ec-107b5ea3bb41" />
  |
 
