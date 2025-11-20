@@ -72,7 +72,7 @@
 | F-02 | 🔴 High | Path Traversal | User can access files outside web root via ../ | Screenshot or sqlmap result |
 | F-03 | 🟠 Medium | Absence of Anti-CSRF Tokens | Registration form has no CSRF protection | Burp log or response headers |
 | F-04 | 🟠 Medium | Content Security Policy Missing | CSP header not set on / and /register | Burp log or response headers |
-| F-05 | 🟡 Low | Weak password policy | Accepts passwords like "12345" | '<img width="552" height="92" alt="image" src="https://github.com/user-attachments/assets/d8056159-c5b8-45cc-92ec-107b5ea3bb41" />
+| F-05 | 🟡 Low | Weak password policy | Accepts passwords like "12345" | <img width="552" height="92" alt="image" src="https://github.com/user-attachments/assets/d8056159-c5b8-45cc-92ec-107b5ea3bb41" />
  |
 
 ---
