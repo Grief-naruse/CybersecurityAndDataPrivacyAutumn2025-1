@@ -5,26 +5,27 @@ ZAP by [Checkmarx](https://checkmarx.com/).
 
 ## Summary of Alerts
 
-| Niveau de risque | Number of Alerts |
+| Risk Level | Number of Alerts |
 | --- | --- |
-| Haut | 1 |
-| Moyen | 3 |
-| Faible | 2 |
-| Pour information | 0 |
+| High | 2 |
+| Medium | 3 |
+| Low | 2 |
+| Informational | 0 |
 
 
 
 
-## Alertes
+## Alerts
 
-| Nom | Niveau de risque | Number of Instances |
+| Name | Risk Level | Number of Instances |
 | --- | --- | --- |
-| Injection SQL | Haut | 2 |
-| Absence de Jetons Anti-CSRF | Moyen | 1 |
-| Content Security Policy (CSP) Header Not Set | Moyen | 3 |
-| Missing Anti-clickjacking Header | Moyen | 3 |
-| Application Error Disclosure | Faible | 1 |
-| X-Content-Type-Options Header Missing | Faible | 6 |
+| Path Traversal | High | 1 |
+| SQL Injection | High | 2 |
+| Absence of Anti-CSRF Tokens | Medium | 1 |
+| Content Security Policy (CSP) Header Not Set | Medium | 2 |
+| Missing Anti-clickjacking Header | Medium | 2 |
+| Application Error Disclosure | Low | 1 |
+| X-Content-Type-Options Header Missing | Low | 5 |
 
 
 
@@ -33,11 +34,77 @@ ZAP by [Checkmarx](https://checkmarx.com/).
 
 
 
-### [ Injection SQL ](https://www.zaproxy.org/docs/alerts/40018/)
+### [ Path Traversal ](https://www.zaproxy.org/docs/alerts/6/)
 
 
 
-##### Haut (Moyen)
+##### High (Low)
+
+### Description
+
+The Path Traversal attack technique allows an attacker access to files, directories, and commands that potentially reside outside the web document root directory. An attacker may manipulate a URL in such a way that the web site will execute or reveal the contents of arbitrary files anywhere on the web server. Any device that exposes an HTTP-based interface is potentially vulnerable to Path Traversal.
+
+Most web sites restrict user access to a specific portion of the file-system, typically called the "web document root" or "CGI root" directory. These directories contain the files intended for user access and the executable necessary to drive web application functionality. To access files or execute commands anywhere on the file-system, Path Traversal attacks will utilize the ability of special-characters sequences.
+
+The most basic Path Traversal attack uses the "../" special-character sequence to alter the resource location requested in the URL. Although most popular web servers will prevent this technique from escaping the web document root, alternate encodings of the "../" sequence may help bypass the security filters. These method variations include valid and invalid Unicode-encoding ("..%u2216" or "..%c0%af") of the forward slash character, backslash characters ("..\") on Windows-based servers, URL encoded characters "%2e%2e%2f"), and double URL encoding ("..%255c") of the backslash character.
+
+Even if the web server properly restricts Path Traversal attempts in the URL path, a web application itself may still be vulnerable due to improper handling of user-supplied input. This is a common problem of web applications that use template mechanisms or load static text from files. In variations of the attack, the original URL parameter value is substituted with the file name of one of the web application's dynamic scripts. Consequently, the results can reveal source code because the file is interpreted as text instead of an executable script. These techniques often employ additional special characters such as the dot (".") to reveal the listing of the current working directory, or "%00" NULL characters in order to bypass rudimentary file extension checks.
+
+* URL: http://localhost:8000/register
+
+  * Method: `POST`
+  * Parameter: `username`
+  * Attack: `register`
+  * Evidence: ``
+  * Other Info: ``
+
+
+Instances: 1
+
+### Solution
+
+Assume all input is malicious. Use an "accept known good" input validation strategy, i.e., use an allow list of acceptable inputs that strictly conform to specifications. Reject any input that does not strictly conform to specifications, or transform it into something that does. Do not rely exclusively on looking for malicious or malformed inputs (i.e., do not rely on a deny list). However, deny lists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.
+
+When performing input validation, consider all potentially relevant properties, including length, type of input, the full range of acceptable values, missing or extra inputs, syntax, consistency across related fields, and conformance to business rules. As an example of business rule logic, "boat" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as "red" or "blue."
+
+For filenames, use stringent allow lists that limit the character set to be used. If feasible, only allow a single "." character in the filename to avoid weaknesses, and exclude directory separators such as "/". Use an allow list of allowable file extensions.
+
+Warning: if you attempt to cleanse your data, then do so that the end result is not in the form that can be dangerous. A sanitizing mechanism can remove characters such as '.' and ';' which may be required for some exploits. An attacker can try to fool the sanitizing mechanism into "cleaning" data into a dangerous form. Suppose the attacker injects a '.' inside a filename (e.g. "sensi.tiveFile") and the sanitizing mechanism removes the character resulting in the valid filename, "sensitiveFile". If the input data are now assumed to be safe, then the file may be compromised. 
+
+Inputs should be decoded and canonicalized to the application's current internal representation before being validated. Make sure that your application does not decode the same input twice. Such errors could be used to bypass allow list schemes by introducing dangerous inputs after they have been checked.
+
+Use a built-in path canonicalization function (such as realpath() in C) that produces the canonical version of the pathname, which effectively removes ".." sequences and symbolic links.
+
+Run your code using the lowest privileges that are required to accomplish the necessary tasks. If possible, create isolated accounts with limited privileges that are only used for a single task. That way, a successful attack will not immediately give the attacker access to the rest of the software or its environment. For example, database applications rarely need to run as the database administrator, especially in day-to-day operations.
+
+When the set of acceptable objects, such as filenames or URLs, is limited or known, create a mapping from a set of fixed input values (such as numeric IDs) to the actual filenames or URLs, and reject all other inputs.
+
+Run your code in a "jail" or similar sandbox environment that enforces strict boundaries between the process and the operating system. This may effectively restrict which files can be accessed in a particular directory or which commands can be executed by your software.
+
+OS-level examples include the Unix chroot jail, AppArmor, and SELinux. In general, managed code may provide some protection. For example, java.io.FilePermission in the Java SecurityManager allows you to specify restrictions on file operations.
+
+This may not be a feasible solution, and it only limits the impact to the operating system; the rest of your application may still be subject to compromise.
+
+
+### Reference
+
+
+* [ https://owasp.org/www-community/attacks/Path_Traversal ](https://owasp.org/www-community/attacks/Path_Traversal)
+* [ https://cwe.mitre.org/data/definitions/22.html ](https://cwe.mitre.org/data/definitions/22.html)
+
+
+#### CWE Id: [ 22 ](https://cwe.mitre.org/data/definitions/22.html)
+
+
+#### WASC Id: 33
+
+#### Source ID: 1
+
+### [ SQL Injection ](https://www.zaproxy.org/docs/alerts/40018/)
+
+
+
+##### High (Medium)
 
 ### Description
 
@@ -45,9 +112,9 @@ SQL injection may be possible.
 
 * URL: http://localhost:8000/register
 
-  * Méthode: `POST`
+  * Method: `POST`
   * Parameter: `username`
-  * Attaquer: `foo-bar@example.com AND 1=1 -- `
+  * Attack: `foo-bar@example.com AND 1=1 -- `
   * Evidence: ``
   * Other Info: `The page results were successfully manipulated using the boolean conditions [foo-bar@example.com AND 1=1 -- ] and [foo-bar@example.com AND 1=2 -- ]
 The parameter value being modified was stripped from the HTML output for the purposes of the comparison.
@@ -55,9 +122,9 @@ Data was returned for the original parameter.
 The vulnerability was detected by successfully restricting the data originally returned, by manipulating the parameter.`
 * URL: http://localhost:8000/register
 
-  * Méthode: `POST`
+  * Method: `POST`
   * Parameter: `username`
-  * Attaquer: `foo-bar@example.com OR 1=1 -- `
+  * Attack: `foo-bar@example.com OR 1=1 -- `
   * Evidence: ``
   * Other Info: `The page results were successfully manipulated using the boolean conditions [foo-bar@example.com AND 1=1 -- ] and [foo-bar@example.com OR 1=1 -- ]
 The parameter value being modified was stripped from the HTML output for the purposes of the comparison.
@@ -95,58 +162,58 @@ Grant the minimum database access that is necessary for the application.
 
 #### Source ID: 1
 
-### [ Absence de Jetons Anti-CSRF ](https://www.zaproxy.org/docs/alerts/10202/)
+### [ Absence of Anti-CSRF Tokens ](https://www.zaproxy.org/docs/alerts/10202/)
 
 
 
-##### Moyen (Faible)
+##### Medium (Low)
 
 ### Description
 
-Aucun jetons Anti-CSRF n'ont été trouvés dans un formulaire HTML.
-La contrefaçon de requête intersites (Cross Site Request Forgery - CSRF) est une attaque qui consiste à forcer une victime à envoyer une requête HTTP vers une destination cible, sans qu'elle n'en aie ni connaissance ni intention, afin d'effectuer une action en se faisant passer pour la victime. La cause originelle est que les fonctionnalités de l'application sont appelées à l'aide d'URL ou d'actions de formulaires prévisibles et reproductibles. La nature de l'attaque est que le CSRF exploite la confiance qu'un site internet accorde à un utilisateur. En revanche, le cross-site scripting (XSS) exploite la confiance que l'utilisateur porte à un site internet. Comme XSS, les attaques CSRF ne sont pas nécessairement multi-sites, mais elles peuvent l'être. La contrefaçon de requête intersite est également connue sous les noms CSRF, XSRF, attaque en un clic (one-click attack), session riding, confused deputy et sea surf.
+No Anti-CSRF tokens were found in a HTML submission form.
+A cross-site request forgery is an attack that involves forcing a victim to send an HTTP request to a target destination without their knowledge or intent in order to perform an action as the victim. The underlying cause is application functionality using predictable URL/form actions in a repeatable way. The nature of the attack is that CSRF exploits the trust that a web site has for a user. By contrast, cross-site scripting (XSS) exploits the trust that a user has for a web site. Like XSS, CSRF attacks are not necessarily cross-site, but they can be. Cross-site request forgery is also known as CSRF, XSRF, one-click attack, session riding, confused deputy, and sea surf.
 
-Les attaques CSRF sont efficaces dans de nombreuses situations, notamment:
-* quand la victime a une session active sur le site cible.
-    * quand la victime est authentifiée via HTTP auth sur le site cible.
-    * quand la victime est sur le même réseau local que le site cible.
+CSRF attacks are effective in a number of situations, including:
+    * The victim has an active session on the target site.
+    * The victim is authenticated via HTTP auth on the target site.
+    * The victim is on the same local network as the target site.
 
-CSRF a d'abord été utilisée pour effectuer une action contre un site cible en utilisant les privilèges de la victime, mais des techniques récentes permettent d'avoir accès à des renseignements en accédant à la réponse. Le risque de divulgation d'informations est considérablement augmenté lorsque le site cible est vulnérable aux XSS, parce que XSS peut être utilisé comme une plateforme pour CSRF, permettant à l'attaque d'opérer dans les limites de la politique de même origine.
+CSRF has primarily been used to perform an action against a target site using the victim's privileges, but recent techniques have been discovered to disclose information by gaining access to the response. The risk of information disclosure is dramatically increased when the target site is vulnerable to XSS, because XSS can be used as a platform for CSRF, allowing the attack to operate within the bounds of the same-origin policy.
 
 * URL: http://localhost:8000/register
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: ``
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: `<form action="/register" method="POST">`
-  * Other Info: `Aucun jetons Anti-CSRF connus [anticsrf, CSRFToken, __RequestVerificationToken, csrfmiddlewaretoken, authenticity_token, OWASP_CSRFTOKEN, anoncsrf, csrf_token, _csrf, _csrfSecret, __csrf_magic, CSRF, _token, _csrf_token, _csrfToken] n'a été trouvé dans le formulaire HTML suivant: [Form 1: "birthdate" "password" "username" ].  `
+  * Other Info: `No known Anti-CSRF token [anticsrf, CSRFToken, __RequestVerificationToken, csrfmiddlewaretoken, authenticity_token, OWASP_CSRFTOKEN, anoncsrf, csrf_token, _csrf, _csrfSecret, __csrf_magic, CSRF, _token, _csrf_token, _csrfToken] was found in the following HTML form: [Form 1: "birthdate" "password" "username" ].`
 
 
 Instances: 1
 
 ### Solution
 
-Phase: Architecture et Design
-Utilisez une librairie ou un framework approuvé qui ne permet pas cette vulnérabilité, ou qui contient des fonctionnalités permettant d'éviter plus facilement cette vulnérabilité.
-Utilisez  par exemple des librairies anti-CSRF telles que CSRFGuard de l'OWASP.
+Phase: Architecture and Design
+Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid.
+For example, use anti-CSRF packages such as the OWASP CSRFGuard.
 
-Phase: Implémentation
-Assurez-vous que votre application soit exempte de problèmes de cross-site scripting, parce que la plupart des défenses contre le CSRF peuvent être contournées en utilisant des scripts contrôlés par le pirate.
+Phase: Implementation
+Ensure that your application is free of cross-site scripting issues, because most CSRF defenses can be bypassed using attacker-controlled script.
 
-Phase: Architecture et Design
-Générez une valeur à usage unique pour chaque formulaire, placez-la dans le formulaire et vérifiez-la à la réception du formulaire. Assurez-vous que cette valeur unique ne soit pas prévisible (CWE-330).
-Notez que ceci peut aussi être contourné en utilisant XSS.
+Phase: Architecture and Design
+Generate a unique nonce for each form, place the nonce into the form, and verify the nonce upon receipt of the form. Be sure that the nonce is not predictable (CWE-330).
+Note that this can be bypassed using XSS.
 
-Identifiez les opérations particulièrement dangereuses. Quand l'utilisateur exécute une opération dangereuse, envoyez une requête de confirmation distincte pour vérifier que l'utilisateur veut effectivement effectuer cette opération.
-Notez que ceci peut aussi être contourné en utilisant XSS.
+Identify especially dangerous operations. When the user performs a dangerous operation, send a separate confirmation request to ensure that the user intended to perform that operation.
+Note that this can be bypassed using XSS.
 
-Utilisez la librairie de gestion de session ESAPI.
-Cette librairie comprend un composant pour le contrôle de CSRF.
+Use the ESAPI Session Management control.
+This control includes a component for CSRF.
 
-N'utilisez pas la méthode GET pour les requêtes entraînant un changement d'état.
+Do not use the GET method for any request that triggers a state change.
 
-Phase: Implémentation
-Vérifiez l'en-tête HTTP Referer pour voir si la requête provient d'une page attendue. Ceci pourrait toutefois restreindre la fonctionnalité de l'application, car les utilisateurs ou les serveurs proxy pourraient avoir désactivé le renvoi du HTTP Referer pour des raisons de confidentialité.
+Phase: Implementation
+Check the HTTP Referer header to see if the request originated from an expected page. This could break legitimate functionality, because users or proxies may have disabled sending the Referer for privacy reasons.
 
 ### Reference
 
@@ -166,36 +233,29 @@ Vérifiez l'en-tête HTTP Referer pour voir si la requête provient d'une page a
 
 
 
-##### Moyen (Haut)
+##### Medium (High)
 
 ### Description
 
 Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page — covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.
 
-* URL: http://localhost:8000
-
-  * Méthode: `GET`
-  * Parameter: ``
-  * Attaquer: ``
-  * Evidence: ``
-  * Other Info: ``
 * URL: http://localhost:8000/
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: ``
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: ``
   * Other Info: ``
 * URL: http://localhost:8000/register
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: ``
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: ``
   * Other Info: ``
 
 
-Instances: 3
+Instances: 2
 
 ### Solution
 
@@ -224,36 +284,29 @@ Ensure that your web server, application server, load balancer, etc. is configur
 
 
 
-##### Moyen (Moyen)
+##### Medium (Medium)
 
 ### Description
 
 The response does not protect against 'ClickJacking' attacks. It should include either Content-Security-Policy with 'frame-ancestors' directive or X-Frame-Options.
 
-* URL: http://localhost:8000
-
-  * Méthode: `GET`
-  * Parameter: `x-frame-options`
-  * Attaquer: ``
-  * Evidence: ``
-  * Other Info: ``
 * URL: http://localhost:8000/
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: `x-frame-options`
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: ``
   * Other Info: ``
 * URL: http://localhost:8000/register
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: `x-frame-options`
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: ``
   * Other Info: ``
 
 
-Instances: 3
+Instances: 2
 
 ### Solution
 
@@ -277,7 +330,7 @@ If you expect the page to be framed only by pages on your server (e.g. it's part
 
 
 
-##### Faible (Moyen)
+##### Low (Medium)
 
 ### Description
 
@@ -285,9 +338,9 @@ This page contains an error/warning message that may disclose sensitive informat
 
 * URL: http://localhost:8000/register
 
-  * Méthode: `POST`
+  * Method: `POST`
   * Parameter: ``
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: `HTTP/1.1 500 Internal Server Error`
   * Other Info: ``
 
@@ -313,63 +366,55 @@ Review the source code of this page. Implement custom error pages. Consider impl
 
 
 
-##### Faible (Moyen)
+##### Low (Medium)
 
 ### Description
 
 The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.
 
-* URL: http://localhost:8000
-
-  * Méthode: `GET`
-  * Parameter: `x-content-type-options`
-  * Attaquer: ``
-  * Evidence: ``
-  * Other Info: `This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.
-At "High" threshold this scan rule will not alert on client or server error responses.`
 * URL: http://localhost:8000/
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: `x-content-type-options`
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: ``
   * Other Info: `This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.
 At "High" threshold this scan rule will not alert on client or server error responses.`
 * URL: http://localhost:8000/register
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: `x-content-type-options`
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: ``
   * Other Info: `This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.
 At "High" threshold this scan rule will not alert on client or server error responses.`
 * URL: http://localhost:8000/static/footer.js
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: `x-content-type-options`
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: ``
   * Other Info: `This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.
 At "High" threshold this scan rule will not alert on client or server error responses.`
 * URL: http://localhost:8000/static/index.js
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: `x-content-type-options`
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: ``
   * Other Info: `This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.
 At "High" threshold this scan rule will not alert on client or server error responses.`
 * URL: http://localhost:8000/static/tailwind.css
 
-  * Méthode: `GET`
+  * Method: `GET`
   * Parameter: `x-content-type-options`
-  * Attaquer: ``
+  * Attack: ``
   * Evidence: ``
   * Other Info: `This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.
 At "High" threshold this scan rule will not alert on client or server error responses.`
 
 
-Instances: 6
+Instances: 5
 
 ### Solution
 
@@ -389,6 +434,7 @@ If possible, ensure that the end user uses a standards-compliant and modern web 
 #### WASC Id: 15
 
 #### Source ID: 3
+
 
 
 
