@@ -15,60 +15,60 @@ This report therefore details the five issues we initially found in the first st
 
 This section provides a concise summary of the **Top 5 findings** originally reported in Part 1, and whether they were fixed in Part 2.
 
-| Finding | Description | Status | Evidence |
-|--------|-------------|--------|----------|
-| SQL Injection in registration | Username field allows boolean-based SQL injection | Fixed | screenshot link |
-| Path Traversal  | User can access files outside web root via ../ | Fixed | screenshot link |
-| Absence of Anti-CSRF Tokens  | Registration form has no CSRF protection | Not Fixed | screenshot link |
-| Content Security Policy Missing | CSP header not set on / and /register | Fixed | screenshot link |
-| Weak password policy | accepts passwords like "12345" | Fixed | screenshot link |
+| Id | Finding | Description | Status |
+|----|--------|-------------|--------|
+| F1 | SQL Injection in registration | Username field allows boolean-based SQL injection | Fixed |
+| F2 | Path Traversal  | User can access files outside web root via ../ | Fixed |
+| F3 | Absence of Anti-CSRF Tokens  | Registration form has no CSRF protection | Not Fixed |
+| F4 | Content Security Policy Missing | CSP header not set on / and /register | Fixed |
+| F5 | Weak password policy | accepts passwords like "12345" | Fixed |
 
 ---
 
-## Detailed Findings (copy/paste from your discussion post)
+## Detailed Findings 
 
-### Finding 1 – [Title]
+### Finding 1 – SQL Injection in registration
 - **Original Issue:**  
 - **How it was identified:**  
 - **Verification steps:**  
-- **Status:** Fixed / Not Fixed  
+- **Status:** Fixed  
 - **Evidence:**  
   - `/screenshots/finding1.png`
 
 ---
 
-### Finding 2 – [Title]
+### Finding 2 – Path Traversal
 - Original Issue:  
 - Identified by:  
 - Verification:  
-- Status:  
+- Status:  Fixed
 - Evidence:
 
 ---
 
-### Finding 3 – [Title]
+### Finding 3 – Absence of Anti-CSRF Tokens
 - Original Issue:  
 - Identified by:  
 - Verification:  
-- Status:  
+- Status:   Not Fixed
 - Evidence:
 
 ---
 
-### Finding 4 – [Title]
+### Finding 4 – Content Security Policy Missing
 - Original Issue:  
 - Identified by:  
 - Verification:  
-- Status:  
+- Status:  Fixed
 - Evidence:
 
 ---
 
-### Finding 5 – [Title]
+### Finding 5 – Weak password policy
 - Original Issue:  
 - Identified by:  
 - Verification:  
-- Status:  
+- Status:  Fixed
 - Evidence:
 
 ---
