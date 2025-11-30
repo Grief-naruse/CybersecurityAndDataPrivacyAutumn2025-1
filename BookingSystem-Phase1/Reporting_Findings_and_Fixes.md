@@ -33,10 +33,10 @@ This section provides a concise summary of the **Top 5 findings** originally rep
   The web page can be successfully manipulated using the boolean conditions like foo-bar@example.com AND 1=1 --  and foo-bar@example.com AND 1=2 --
 - **How it was identified:**
 
-  Pour idenfifier ce problème nous avons lancer un test ZAP qui nous a montré le problème
+  For this problem, we identified it by running a ZAP scan, which revealed the issue.
 - **Verification steps:**
 
-  Pour verifier que cela étais resolu nous avons lancer plusieur test different sur OWASP ZAP et aucun n'a montré que cela étais de nouveau possible.
+  To verify that this issue was resolved, we ran several different tests using OWASP ZAP, and none of them indicated that the problem was still present.
 - **Status:**
 
   Fixed  
@@ -52,10 +52,10 @@ This section provides a concise summary of the **Top 5 findings** originally rep
   User can access files outside web root via ../
 - Identified by:
 
-    Pour idenfifier ce problème nous avons lancer un test ZAP qui nous a montré le problème
+    To identify this issue, we ran a ZAP scan, which revealed the problem.
 - Verification:
 
-  Pour verifier que cela étais resolu nous avons lancer plusieur test different sur OWASP ZAP et aucun n'a montré que cela étais de nouveau possible.
+  To verify that this was resolved, we conducted several different tests using OWASP ZAP, and none of them showed that it was possible again.
 - Status:
 
   Fixed
@@ -72,10 +72,10 @@ This section provides a concise summary of the **Top 5 findings** originally rep
   No known Anti-CSRF token was found in the following HTML form: [Form 1: "birthdate" "password" "username" ].
 - Identified by:
 
-  Pour identifié ce problème on a lancé plusieur test sur OWASP ZAP qui on montré a plusieur reprise que ce problème persistait
+  To identify this issue, we ran several tests using OWASP ZAP, which repeatedly showed that the problem persisted.
 - Verification:
 
-  Le logiciel OWASP ZAP a trouvé plusieur fois de suite que ce problème n'étais pas réglé
+ The OWASP ZAP software repeatedly detected that this issue had not been resolved.
 - Status:
 
   Not Fixed
@@ -92,11 +92,10 @@ This section provides a concise summary of the **Top 5 findings** originally rep
   No header was found on the website  
 - Identified by:
 
-  Pour idenfifier ce problème nous avons lancer un test ZAP qui nous a montré le problème
+ To identify this issue, we ran a ZAP scan, which revealed the problem.
 - Verification:
 
-  Pour verifier que cela étais resolu nous avons lancer plusieur test different sur OWASP ZAP et aucun n'a montré que une content security policy étais bien présente 
-  
+  To verify that this was resolved, we ran several different tests using OWASP ZAP, and none of them showed that a proper Content Security Policy was in place.
 - Status:
 
   Fixed
@@ -113,10 +112,10 @@ This section provides a concise summary of the **Top 5 findings** originally rep
   On the old website we were able to set password like "12345"
 - Identified by:
   
-  Pour identifier cela nous avons tester sur le site web de mettre un mot de passe faible comme "12345" et le site web a refusé que nous mettions un mot de passe de moin de 8 caractère.
+  To identify this, we tested the website by trying to set a weak password such as "12345," and the website prevented us from using a password with fewer than 8 characters.
 - Verification:
 
-  Le site web n'accepte plus les mot de passe de moins de 8 caratères
+  The website no longer accepts passwords with fewer than 8 characters.
 - Status:
 
   Fixed
@@ -126,4 +125,3 @@ This section provides a concise summary of the **Top 5 findings** originally rep
 
 
 ---
-'
