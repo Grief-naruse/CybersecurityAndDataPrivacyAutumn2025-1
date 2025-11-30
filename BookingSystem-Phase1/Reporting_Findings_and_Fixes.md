@@ -28,8 +28,8 @@ This section provides a concise summary of the **Top 5 findings** originally rep
 ## Detailed Findings 
 
 ### Finding 1 – SQL Injection in registration
-- **Original Issue:**  We can 
-- **How it was identified:**  Using ZAP
+- **Original Issue:**   
+- **How it was identified:**  Pour idenfifier ce problème nous avons lancer un test ZAP
 - **Verification steps:**  
 - **Status:** Fixed  
 - **Evidence:**  
