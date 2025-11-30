@@ -17,11 +17,11 @@ This section provides a concise summary of the **Top 5 findings** originally rep
 
 | Finding | Description | Status | Evidence |
 |--------|-------------|--------|----------|
-| Finding 1 | [Short description] | Fixed / Not Fixed | screenshot link |
-| Finding 2 | [Short description] | Fixed / Not Fixed | screenshot link |
-| Finding 3 | [Short description] | Fixed / Not Fixed | screenshot link |
-| Finding 4 | [Short description] | Fixed / Not Fixed | screenshot link |
-| Finding 5 | [Short description] | Fixed / Not Fixed | screenshot link |
+| SQL Injection in registration | Username field allows boolean-based SQL injection | Fixed / Not Fixed | screenshot link |
+| Path Traversal  | User can access files outside web root via ../ | Fixed / Not Fixed | screenshot link |
+| Absence of Anti-CSRF Tokens  | Registration form has no CSRF protection | Fixed / Not Fixed | screenshot link |
+| Content Security Policy Missing | CSP header not set on / and /register | Fixed / Not Fixed | screenshot link |
+| Weak password policy | accepts passwords like "12345" | Fixed / Not Fixed | screenshot link |
 
 ---
 
