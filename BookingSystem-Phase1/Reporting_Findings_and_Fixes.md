@@ -28,58 +28,102 @@ This section provides a concise summary of the **Top 5 findings** originally rep
 ## Detailed Findings 
 
 ### Finding 1 – SQL Injection in registration
-- **Original Issue:**   
-- **How it was identified:**  Pour idenfifier ce problème nous avons lancer un test ZAP
-- **Verification steps:**  
-- **Status:** Fixed  
-- **Evidence:**  
-  - `/screenshots/finding1.png`
+- **Original Issue:**
+
+  The web page can be successfully manipulated using the boolean conditions like foo-bar@example.com AND 1=1 --  and foo-bar@example.com AND 1=2 --
+- **How it was identified:**
+
+  Pour idenfifier ce problème nous avons lancer un test ZAP qui nous a montré le problème
+- **Verification steps:**
+
+  Pour verifier que cela étais resolu nous avons lancer plusieur test different sur OWASP ZAP et aucun n'a montré que cela étais de nouveau possible.
+- **Status:**
+
+  Fixed  
+- **Evidence:**
+  
+   <img width="482" height="104" alt="image" src="https://github.com/user-attachments/assets/ccc93e0e-9aa0-440a-8c26-cbc543c0a9f6" />
 
 ---
 
 ### Finding 2 – Path Traversal
-- Original Issue:  
-- Identified by:  
-- Verification:  
-- Status:  Fixed
+- Original Issue:
+
+  User can access files outside web root via ../
+- Identified by:
+
+    Pour idenfifier ce problème nous avons lancer un test ZAP qui nous a montré le problème
+- Verification:
+
+  Pour verifier que cela étais resolu nous avons lancer plusieur test different sur OWASP ZAP et aucun n'a montré que cela étais de nouveau possible.
+- Status:
+
+  Fixed
 - Evidence:
+
+  <img width="475" height="100" alt="image" src="https://github.com/user-attachments/assets/009873db-b765-412f-8dc1-03d8da8e516d" />
+
 
 ---
 
 ### Finding 3 – Absence of Anti-CSRF Tokens
-- Original Issue:  
-- Identified by:  
-- Verification:  
-- Status:   Not Fixed
+- Original Issue:
+
+  No known Anti-CSRF token was found in the following HTML form: [Form 1: "birthdate" "password" "username" ].
+- Identified by:
+
+  Pour identifié ce problème on a lancé plusieur test sur OWASP ZAP qui on montré a plusieur reprise que ce problème persistait
+- Verification:
+
+  Le logiciel OWASP ZAP a trouvé plusieur fois de suite que ce problème n'étais pas réglé
+- Status:
+
+  Not Fixed
 - Evidence:
+
+  <img width="465" height="218" alt="image" src="https://github.com/user-attachments/assets/e8963182-a86f-4856-adbd-cc5d4e616e9c" />
+
 
 ---
 
 ### Finding 4 – Content Security Policy Missing
-- Original Issue:  
-- Identified by:  
-- Verification:  
-- Status:  Fixed
+- Original Issue:
+
+  No header was found on the website  
+- Identified by:
+
+  Pour idenfifier ce problème nous avons lancer un test ZAP qui nous a montré le problème
+- Verification:
+
+  Pour verifier que cela étais resolu nous avons lancer plusieur test different sur OWASP ZAP et aucun n'a montré que une content security policy étais bien présente 
+  
+- Status:
+
+  Fixed
 - Evidence:
+
+  <img width="472" height="143" alt="image" src="https://github.com/user-attachments/assets/60473cb4-1aee-4556-a6ea-630392547d69" />
+
 
 ---
 
 ### Finding 5 – Weak password policy
-- Original Issue:  
-- Identified by:  
-- Verification:  
-- Status:  Fixed
-- Evidence: <img width="574" height="115" alt="image" src="https://github.com/user-attachments/assets/be0f6a96-615b-4f52-96c5-2dff9633b081" />
+- Original Issue:
+
+  On the old website we were able to set password like "12345"
+- Identified by:
+  
+  Pour identifier cela nous avons tester sur le site web de mettre un mot de passe faible comme "12345" et le site web a refusé que nous mettions un mot de passe de moin de 8 caractère.
+- Verification:
+
+  Le site web n'accepte plus les mot de passe de moins de 8 caratères
+- Status:
+
+  Fixed
+- Evidence:
+
+  <img width="574" height="115" alt="image" src="https://github.com/user-attachments/assets/be0f6a96-615b-4f52-96c5-2dff9633b081" />
 
 
 ---
-
-# 📥 How to Run the Updated Application (optional)
-
-To allow future testers or teachers to reproduce the tests:
-
-```bash
-git clone [URL of your repo]
-cd BookingSystem_Part2
-npm install
-npm start
+'
