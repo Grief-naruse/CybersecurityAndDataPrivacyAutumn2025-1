@@ -28,8 +28,8 @@ This section provides a concise summary of the **Top 5 findings** originally rep
 ## Detailed Findings 
 
 ### Finding 1 – SQL Injection in registration
-- **Original Issue:**  
-- **How it was identified:**  
+- **Original Issue:**  We can 
+- **How it was identified:**  Using ZAP
 - **Verification steps:**  
 - **Status:** Fixed  
 - **Evidence:**  
@@ -69,7 +69,8 @@ This section provides a concise summary of the **Top 5 findings** originally rep
 - Identified by:  
 - Verification:  
 - Status:  Fixed
-- Evidence:
+- Evidence: <img width="574" height="115" alt="image" src="https://github.com/user-attachments/assets/be0f6a96-615b-4f52-96c5-2dff9633b081" />
+
 
 ---
 
