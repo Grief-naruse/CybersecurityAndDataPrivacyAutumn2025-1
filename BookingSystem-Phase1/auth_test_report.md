@@ -6,17 +6,17 @@ In this report, we have listed and described all the things that the following t
 
 
 ### List of all pages and endpoints :
-http://localhost:8003/
-http://localhost:8003/resources
-http://localhost:8003/reservation
-http://localhost:8003/reservation?id=...
-http://localhost:8003/reservation?id=...
-http://localhost:8003/register
-http://localhost:8003/login
-http://localhost:8003/api/reservation
-http://localhost:8003/api/resources            
-http://localhost:8003/api/session              
-http://localhost:8003/api/users
+* http://localhost:8003/
+* http://localhost:8003/resources
+* http://localhost:8003/reservation
+* http://localhost:8003/reservation?id=...
+* http://localhost:8003/reservation?id=...
+* http://localhost:8003/register
+* http://localhost:8003/login
+* http://localhost:8003/api/reservation
+* http://localhost:8003/api/resources            
+* http://localhost:8003/api/session              
+* http://localhost:8003/api/users
 
 
 ---
