@@ -118,4 +118,4 @@ Here are all the actions that Administrator can not perform:
 ---
 ## Zap Finding
 ---
-* "With Zap, we also found the /static page, the /robots.txt link, and the /sitemap.xml link."
+* With Zap, we also found the /static page, the /robots.txt link, and the /sitemap.xml link.
