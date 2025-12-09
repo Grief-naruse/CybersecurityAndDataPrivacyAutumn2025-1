@@ -1,6 +1,9 @@
-## 1️⃣ **🏗️ Create the Main Testing List (your own markdown file)**
+## Authorization Test Report
 
-You must create **one clear markdown document** where all testing results are organized under **three role-based sections**:
+Student: Maxence Gautier-Grall / Ilan Rubaud
+
+In this report, we have listed and described all the things that the following three roles can do on a test website: Guest, Reserver, and Administrator.
+
 
 ---
 
