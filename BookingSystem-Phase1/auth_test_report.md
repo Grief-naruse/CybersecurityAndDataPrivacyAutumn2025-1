@@ -5,6 +5,20 @@ Student: Maxence Gautier-Grall / Ilan Rubaud
 In this report, we have listed and described all the things that the following three roles can do on a test website: Guest, Reserver, and Administrator.
 
 
+### List of all pages and endpoints :
+http://localhost:8003/
+http://localhost:8003/resources
+http://localhost:8003/reservation
+http://localhost:8003/reservation?id=...
+http://localhost:8003/reservation?id=...
+http://localhost:8003/register
+http://localhost:8003/login
+http://localhost:8003/api/reservation
+http://localhost:8003/api/resources            
+http://localhost:8003/api/session              
+http://localhost:8003/api/users
+
+
 ---
 
 ### 🧑‍🦲 **Guest**
@@ -48,6 +62,7 @@ Example format:
 * "Can login as a reserver -- /login"
 * “Can list resources — /resources”
 * "Can modify his reservation -- /reservation?id=?"
+* * "Can modify the reservation of another reserver"
 
 ---
 
