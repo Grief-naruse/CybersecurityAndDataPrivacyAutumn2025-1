@@ -70,9 +70,10 @@ Here are all the actions that Reservers can not perform:
 Here are all the actions that Administrator can perform:
 
 * “Can add a resource — `/admin/resources/new`”
-* “Can delete a reserver — `/admin/users/delete/:id`”
-* “Can manage all reservations — `/admin/reservations`”
+* “Can delete a reservation in '/reservation?id=1'"
+* “Can manage a reservation in '/reservation?id=1'"
 * “Can view all users (spec 4)”
+* "Can manage and modify the ressouces in '/resources?id=1'"
 
 ---
 
@@ -80,7 +81,7 @@ Here are all the actions that Administrator can perform:
 
 Here are all the actions that Administrator can not perform:
 
-* “Cannot book a resource if the system incorrectly blocks admins (bug?)”
-* “Cannot perform an action because the UI has no link (but API allows?) — flag as ⚠️”
+/////* “Cannot book a resource if the system incorrectly blocks admins (bug?)”
+/////* “Cannot perform an action because the UI has no link (but API allows?) — flag as ⚠️”
 
 ---
