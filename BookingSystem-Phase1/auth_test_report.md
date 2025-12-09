@@ -58,7 +58,7 @@ Here are all the actions that Reservers can not perform:
 * “Cannot access admin user list ”
   “Cannot delete other users ”
 * “Cannot modify resources”
-* “Cannot escalate privileges via hidden form fields” 
+* “Cannot escalate privileges via hidden form fields (test with Brup suit)” 
 
 ---
 
