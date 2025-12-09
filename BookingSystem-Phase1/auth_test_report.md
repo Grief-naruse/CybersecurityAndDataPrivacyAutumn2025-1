@@ -2,7 +2,7 @@
 
 Student: Maxence Gautier-Grall / Ilan Rubaud
 
-In this report, we have listed and described all the things that the following three roles can do on a test website: Guest, Reserver, and Administrator.
+In this report, we have listed and described all the things that the following three roles can do on a test website: Guest, Reserver, and Administrator. 
 
 
 ### List of all pages and endpoints :
@@ -17,8 +17,8 @@ In this report, we have listed and described all the things that the following t
 * http://localhost:8003/api/resources            
 * http://localhost:8003/api/session              
 * http://localhost:8003/api/users
-
-
+---
+## Role (Guest, Reserver, Administrator)
 ---
 
 ### 🧑‍🦲 **Guest**
