@@ -44,9 +44,10 @@ Here are all the actions that Reservers can perform:
 
 Example format:
 
-* “Can book a resource — `/reservation` + `/api/reservations`”
-* “Can view own profile page — `/profile`”
-* “Can list resources — `/resources`”
+* “Can book a resource — /reservation ”
+* "Can login as a reserver -- /login"
+* “Can list resources — /resources”
+* "Can modify his reservation -- /reservation?id=?"
 
 ---
 
@@ -54,10 +55,10 @@ Example format:
 
 Here are all the actions that Reservers can not perform:
 
-* “Cannot access admin user list — `/admin/users`”
-* “Cannot delete other users — `/api/admin/users/:id`”
-* “Cannot modify resources (spec says admin only)”
-* “Cannot escalate privileges via hidden form fields”
+* “Cannot access admin user list ”
+  “Cannot delete other users ”
+* “Cannot modify resources”
+* “Cannot escalate privileges via hidden form fields” 
 
 ---
 
