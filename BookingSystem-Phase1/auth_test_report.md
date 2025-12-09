@@ -10,7 +10,7 @@ In this report, we have listed and described all the things that the following t
 * http://localhost:8003/resources
 * http://localhost:8003/reservation
 * http://localhost:8003/reservation?id=...
-* http://localhost:8003/reservation?id=...
+* http://localhost:8003/resources?id=...
 * http://localhost:8003/register
 * http://localhost:8003/login
 * http://localhost:8003/api/reservation
@@ -68,7 +68,7 @@ Example format:
 * "Can login as a reserver -- /login"
 * “Can list resources — /resources”
 * "Can modify his reservation -- /reservation?id=?"
-* "Can modify the reservation of another reserver"
+* "Can modify the reservation of another reserver with the link '/reservation?id=?'"
 * "Can access the '/api/reservation'"
 * "Can access the '/api/resources'"
 * "Can access the '/api/users'"
@@ -81,9 +81,9 @@ Example format:
 
 Here are all the actions that Reservers can not perform:
 
-* “Cannot access admin user list ”
-  “Cannot delete other users ”
-* “Cannot modify resources”
+* “Cannot delete other users ”
+* “Cannot modify his resources and the other resources”
+* “Cannot modify his own information”
 * “Cannot escalate privileges via hidden form fields (test with Brup suit)” 
 
 ---
@@ -112,7 +112,10 @@ Here are all the actions that Administrator can perform:
 
 Here are all the actions that Administrator can not perform:
 
-/////* “Cannot book a resource if the system incorrectly blocks admins (bug?)”
-/////* “Cannot perform an action because the UI has no link (but API allows?) — flag as ⚠️”
+* “Cannot delete resources”
+* "Cannot delete reserver"
 
 ---
+## Zap Finding
+---
+-> "With Zap, we also found the /static page, the /robots.txt link, and the /sitemap.xml link."
