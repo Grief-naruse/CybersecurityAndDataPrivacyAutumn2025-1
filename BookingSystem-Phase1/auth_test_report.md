@@ -33,6 +33,7 @@ Here are all the actions that Guests can perform:
 * “Can access login form — `/login`”
 * "Can see reservation but without the name of the person whe reserved"
 * "Can access Register form '/register'"
+* "Can register if they are over 15 years of age."
 
 ---
 
@@ -62,7 +63,8 @@ Example format:
 * "Can login as a reserver -- /login"
 * “Can list resources — /resources”
 * "Can modify his reservation -- /reservation?id=?"
-* * "Can modify the reservation of another reserver"
+* "Can modify the reservation of another reserver"
+    
 
 ---
 
