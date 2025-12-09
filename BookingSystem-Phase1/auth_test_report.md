@@ -34,6 +34,11 @@ Here are all the actions that Guests can perform:
 * "Can see reservation but without the name of the person whe reserved"
 * "Can access Register form '/register'"
 * "Can register if they are over 15 years of age."
+* "Can access the '/api/reservation'"
+* "Can access the '/api/resources'"
+* "Can access the '/api/users'"
+* "Can add resources '/resources'"
+
 
 ---
 
@@ -44,8 +49,8 @@ Here are all the actions that Guests can not perform:
 * “Cannot access to the page '/resources' ”
 * “Cannot access to the page '/reservation' ”
 * “Cannot see who made the reservations"
-* “Cannot access any `/admin/*` pages”
 * “Cannot access reserver profile page `/profile`”
+* "Cannot access the '/api/session'"
 
 ---
 
@@ -64,6 +69,10 @@ Example format:
 * “Can list resources — /resources”
 * "Can modify his reservation -- /reservation?id=?"
 * "Can modify the reservation of another reserver"
+* "Can access the '/api/reservation'"
+* "Can access the '/api/resources'"
+* "Can access the '/api/users'"
+* "Can access the '/api/session'"
     
 
 ---
@@ -90,8 +99,12 @@ Here are all the actions that Administrator can perform:
 * “Can add a resource — `/admin/resources/new`”
 * “Can delete a reservation in '/reservation?id=1'"
 * “Can manage a reservation in '/reservation?id=1'"
-* “Can view all users (spec 4)”
+* “Can view all users”
 * "Can manage and modify the ressouces in '/resources?id=1'"
+* "Can access the '/api/reservation'"
+* "Can access the '/api/resources'"
+* "Can access the '/api/users'"
+* "Can access the '/api/session'"
 
 ---
 
