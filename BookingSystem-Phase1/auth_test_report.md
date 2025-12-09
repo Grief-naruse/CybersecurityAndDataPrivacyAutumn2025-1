@@ -13,22 +13,22 @@ In this report, we have listed and described all the things that the following t
 
 **✅ Can do**
 
-List every action a *Guest* can perform, with the page or endpoint.
-Example format:
+Here are all the actions that Guests can perform:
 
 * “Can view public resource list — `/`”
 * “Can access login form — `/login`”
-* “Can view registered reservations without identity — `/` (spec 8)”
+* "Can see reservation but without the name of the person whe reserved"
+* "Can access Register form '/register'"
 
 ---
 
 **❌ Cannot do**
 
-List every action that a *Guest* is blocked from doing.
-Example format:
+Here are all the actions that Guests can not perform:
 
-* “Cannot access `/reservation` (redirect to login)”
-* “Cannot POST `/api/reservations`”
+* “Cannot access to the page '/resources' ”
+* “Cannot access to the page '/reservation' ”
+* “Cannot see who made the reservations"
 * “Cannot access any `/admin/*` pages”
 * “Cannot access reserver profile page `/profile`”
 
@@ -40,8 +40,7 @@ Example format:
 
 **✅ Can do**
 
-List actions a *Reserver* can do according to specs + actual test results.
-Include visible pages **and** API endpoints.
+Here are all the actions that Reservers can perform:
 
 Example format:
 
@@ -53,9 +52,7 @@ Example format:
 
 **❌ Cannot do**
 
-List actions a *Reserver* is correctly blocked from.
-
-Example format:
+Here are all the actions that Reservers can not perform:
 
 * “Cannot access admin user list — `/admin/users`”
 * “Cannot delete other users — `/api/admin/users/:id`”
@@ -70,9 +67,7 @@ Example format:
 
 **✅ Can do**
 
-List actions an *Administrator* can perform.
-
-Example format:
+Here are all the actions that Administrator can perform:
 
 * “Can add a resource — `/admin/resources/new`”
 * “Can delete a reserver — `/admin/users/delete/:id`”
@@ -83,9 +78,7 @@ Example format:
 
 **❌ Cannot do**
 
-List prohibited behaviors, if any, or incorrect implementation issues.
-
-Example format:
+Here are all the actions that Administrator can not perform:
 
 * “Cannot book a resource if the system incorrectly blocks admins (bug?)”
 * “Cannot perform an action because the UI has no link (but API allows?) — flag as ⚠️”
