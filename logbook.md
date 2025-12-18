@@ -22,4 +22,4 @@
 | 9.12.2025 | 4h | BookingSystem-Phase3 | End BookingSystem-Phase3 |
 | 11.12.2025 | 2h | Lecture-Phase4 | End Lecture-Phase4 |
 | 18.12.2025 | 4h | 6 labs PortSwigger | End 6 labs PortSwigger |
-| 19.12.2025 | 2h | Start final report | End Final Report |
+| 19.12.2025 | 3h | Start final report | End Final Report |
